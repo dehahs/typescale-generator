@@ -110,10 +110,26 @@ function updatePreview() {
     document.getElementById('design-tokens').textContent = JSON.stringify(tokens, null, 2);
 }
 
+// Copy tokens to clipboard
+async function copyTokens() {
+    const tokens = document.getElementById('design-tokens').textContent;
+    try {
+        await navigator.clipboard.writeText(tokens);
+        const feedback = document.getElementById('copy-feedback');
+        feedback.classList.add('show');
+        setTimeout(() => {
+            feedback.classList.remove('show');
+        }, 2000);
+    } catch (err) {
+        console.error('Failed to copy tokens:', err);
+    }
+}
+
 // Add event listeners
 document.getElementById('font-family').addEventListener('change', updatePreview);
 document.getElementById('base-size').addEventListener('input', updatePreview);
 document.getElementById('scale').addEventListener('change', updatePreview);
+document.getElementById('copy-tokens').addEventListener('click', copyTokens);
 
 // Initial preview
 updatePreview();
