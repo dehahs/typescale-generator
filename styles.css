@@ -102,6 +102,18 @@ h2 {
     cursor: pointer;
     font-size: 0.875rem;
     transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-icon {
+    stroke: currentColor;
+    transition: transform 0.2s;
+}
+
+.copy-button:hover .copy-icon {
+    transform: scale(1.1);
 }
 
 .copy-button:hover {
